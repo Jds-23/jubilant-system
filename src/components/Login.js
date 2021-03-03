@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './Login.css'
 import image from './image.png'
 import logo from './owl-logo.png'
@@ -6,6 +6,8 @@ import google from './google.png'
 import linkedin from './linkedin.png'
 
 const Login = () => {
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
     return (
         <div className='login-container' style={{ minHeight: '100vh' }}>
             <div className='login-left-section'>
@@ -17,8 +19,8 @@ const Login = () => {
                 </div>
                 <p className='login-welcome'>Welcome,please login.</p>
                 <div className='login-form'>
-                    <input type='email' placeholder='Email' />
-                    <input type='password' placeholder='Password' />
+                    <input type='email' placeholder='Email' value={email} onChange={e=>setEmail(e.target.value)}/>
+                    <input type='password' placeholder='Password' value={password} onChange={e=>setPassword(e.target.value)}/>
                     <div className='login-form-extra'>
                         <div className='login-form-checkbox'>
                             <input type='checkbox'/>
