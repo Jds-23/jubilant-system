@@ -4,10 +4,24 @@ import image from './image.png'
 import logo from './owl-logo.png'
 import google from './google.png'
 import linkedin from './linkedin.png'
+import axios from '../axios'
 
-const Login = () => {
+const Login = ({setUser}) => {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
+
+    const handleLogin=async ()=>{
+        const response=await axios({
+            method:'post',
+            url:'/prod/login',
+            data:{
+                username:email,
+                password
+            }
+        })
+        // console.log(response.data.result)
+        setUser({user: response.data.result})
+    }
     return (
         <div className='login-container' style={{ minHeight: '100vh' }}>
             <div className='login-left-section'>
@@ -28,7 +42,7 @@ const Login = () => {
                         </div>
                         <p>Forgot Password?</p>
                     </div>
-                    <button className='login-form-button'>Log in</button>
+                    <button className='login-form-button' onClick={handleLogin}>Log in</button>
                     <button className='login-form-google-button'>
                         <img alt='google' src={google}/>
                         Log in with Google</button>
